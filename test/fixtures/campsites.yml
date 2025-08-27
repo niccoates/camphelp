@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  slug: MyString
+  about: MyString
+  logo: MyString
+  primary_colour: MyString
+  open_from: MyString
+  closed_from: MyString
+  website: MyString
+  contact_email: MyString
+  contact_number: MyString
+
+two:
+  name: MyString
+  slug: MyString
+  about: MyString
+  logo: MyString
+  primary_colour: MyString
+  open_from: MyString
+  closed_from: MyString
+  website: MyString
+  contact_email: MyString
+  contact_number: MyString
