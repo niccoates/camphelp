@@ -1,4 +1,39 @@
-<div>
-  <h1 class="font-bold text-4xl">Campsites#index</h1>
-  <p>Find me in app/views/campsites/index.html.erb</p>
+<div class="mx-auto max-w-7xl py-8 px-4 sm:px-6 lg:px-8">
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-xl font-semibold text-gray-900">Your Campsites</h1>
+      <p class="mt-2 text-sm text-gray-700">Select a campsite to manage</p>
+    </div>
+    <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+      <%= link_to new_campsite_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500" do %>
+        Add Campsite
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mt-8 flow-root">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <% @campsites.each do |campsite| %>
+        <%= link_to campsite_path(campsite.slug), class: "relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm hover:border-gray-400" do %>
+          <div class="flex items-center space-x-3">
+            <div class="flex-shrink-0">
+              <% if campsite.logo.present? %>
+                <img class="h-10 w-10 rounded-full" src="<%= campsite.logo %>" alt="">
+              <% else %>
+                <div class="h-10 w-10 rounded-full flex items-center justify-center text-white font-medium" style="background-color: <%= campsite.primary_colour || '#3B82F6' %>">
+                  <%= campsite.name.first.upcase %>
+                </div>
+              <% end %>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-gray-900"><%= campsite.name %></p>
+              <p class="text-sm text-gray-500 truncate">
+                <%= campsite.owner == Current.user ? "Owner" : "Member" %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
