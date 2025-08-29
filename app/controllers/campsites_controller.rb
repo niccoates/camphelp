@@ -6,8 +6,8 @@ class CampsitesController < ApplicationController
   before_action :ensure_owner, only: [:edit, :update, :settings, :settings_portal, :destroy]
 
   def index
-    @campsites = Campsite.all
-  end
+     @campsites = Current.user.campsites
+   end
 
   def new
     @campsite = Campsite.new

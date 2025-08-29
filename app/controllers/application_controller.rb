@@ -12,7 +12,9 @@ class ApplicationController < ActionController::Base
     excluded_paths = [
       new_session_path,
       sign_up_path,
-      new_campsite_path
+      new_campsite_path,
+      campsites_path,
+      root_path
     ]
 
     # Don't show nav if current path matches any excluded path
