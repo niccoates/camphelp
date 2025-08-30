@@ -138,40 +138,39 @@
           </main>
         </div>
       </div>
-
-      <script>
-      function toggleDropdown() {
-        const dropdown = document.getElementById('campsite-dropdown');
-        dropdown.classList.toggle('hidden');
-      }
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', function(event) {
-        const dropdown = document.getElementById('campsite-dropdown');
-        const button = event.target.closest('button');
-
-        if (!button && !dropdown.contains(event.target)) {
-          dropdown.classList.add('hidden');
-        }
-      });
-
-      function toggleAccountDropdown() {
-        const dropdown = document.getElementById('account-dropdown');
-        dropdown.classList.toggle('hidden');
-      }
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', function(event) {
-        const accountDropdown = document.getElementById('account-dropdown');
-        const button = event.target.closest('button');
-
-        if (!button?.onclick?.toString().includes('toggleAccountDropdown') && !accountDropdown.contains(event.target)) {
-          accountDropdown.classList.add('hidden');
-        }
-      });
-      </script>
     <% else %>
       <%= yield %>
     <% end %>
+    <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById('campsite-dropdown');
+      dropdown.classList.toggle('hidden');
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const dropdown = document.getElementById('campsite-dropdown');
+      const button = event.target.closest('button');
+
+      if (!button && !dropdown.contains(event.target)) {
+        dropdown.classList.add('hidden');
+      }
+    });
+
+    function toggleAccountDropdown() {
+      const dropdown = document.getElementById('account-dropdown');
+      dropdown.classList.toggle('hidden');
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const accountDropdown = document.getElementById('account-dropdown');
+      const button = event.target.closest('button');
+
+      if (!button?.onclick?.toString().includes('toggleAccountDropdown') && !accountDropdown.contains(event.target)) {
+        accountDropdown.classList.add('hidden');
+      }
+    });
+    </script>
   </body>
 </html>
