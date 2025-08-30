@@ -14,7 +14,9 @@ class ApplicationController < ActionController::Base
       sign_up_path,
       new_campsite_path,
       campsites_path,
-      root_path
+      root_path,
+      account_password_path,
+      account_path
     ]
 
     # Don't show nav if current path matches any excluded path
