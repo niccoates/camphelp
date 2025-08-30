@@ -1,44 +1,84 @@
 <header class="w-full py-8 bg-gray-50">
-<div class="mx-auto max-w-3xl lg:px-8">
-  <nav aria-label="Breadcrumb" class="flex">
-    <ol role="list" class="flex items-center space-x-4">
-      <li>
-        <div>
-          <%= link_to root_path,
-              class: "text-gray-400 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-300" do %>
-            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5 shrink-0">
-              <path d="M9.293 2.293a1 1 0 0 1 1.414 0l7 7A1 1 0 0 1 17 11h-1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6H3a1 1 0 0 1-.707-1.707l7-7Z" clip-rule="evenodd" fill-rule="evenodd"></path>
-            </svg>
-            <span class="sr-only">Home</span>
-          <% end %>
-        </div>
-      </li>
-      <li>
+  <div class="mx-auto max-w-3xl lg:px-8">
+    <div class="flex justify-between items-center">
+        <nav aria-label="Breadcrumb" class="flex">
+            <ol role="list" class="flex items-center space-x-4">
+            <li>
+                <div>
+                <%= link_to root_path,
+                    class: "text-gray-400 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-300" do %>
+                    <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5 shrink-0">
+                    <path d="M9.293 2.293a1 1 0 0 1 1.414 0l7 7A1 1 0 0 1 17 11h-1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6H3a1 1 0 0 1-.707-1.707l7-7Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Home</span>
+                <% end %>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5 shrink-0 text-gray-300 dark:text-gray-600">
+                    <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"></path>
+                </svg>
+                <%= link_to account_path,
+                    class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" do %>
+                        Account
+                <% end %>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5 shrink-0 text-gray-300 dark:text-gray-600">
+                    <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"></path>
+                </svg>
+                <%= link_to account_password_path,
+                    class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" do %>
+                        Change password
+                <% end %>
+                </div>
+            </li>
+            </ol>
+        </nav>
         <div class="flex items-center">
-          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5 shrink-0 text-gray-300 dark:text-gray-600">
-            <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"></path>
-          </svg>
-          <%= link_to account_path,
-              class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" do %>
-                Account
+          <%= form_with url: session_path, method: :delete, local: true, id: "logout-form", class: "hidden" do |form| %>
           <% end %>
-        </div>
-      </li>
-      <li>
-        <div class="flex items-center">
-          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5 shrink-0 text-gray-300 dark:text-gray-600">
-            <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"></path>
-          </svg>
-          <%= link_to account_password_path,
-              class: "ml-4 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" do %>
-                Change password
-          <% end %>
-        </div>
-      </li>
-    </ol>
-  </nav>
 
-</div>
+          <div class="relative inline-block">
+            <button type="button" class="flex items-center rounded-md bg-white py-1.5 px-3 text-sm text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-indigo-600 hover:bg-gray-50" onclick="toggleAccountDropdown()">
+              <%= Current.user.email_address %>
+              <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+
+            <div id="account-dropdown" class="hidden absolute right-0 mt-2 w-full origin-top-right rounded-md bg-white p-0 py-1 text-base shadow-lg outline-1 outline-black/5 border border-gray-200 focus:outline-none z-50">
+              <div class="py-1">
+                <a href="/account" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+                  <svg class="w-4 h-4 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                  </svg>
+                  Account
+                </a>
+                <a href="/billing" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900">
+                  <svg class="w-4 h-4 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                  </svg>
+                  Billing
+                </a>
+              </div>
+
+              <div class="border-t border-gray-100 py-1">
+                <button onclick="document.getElementById('logout-form').submit();" class="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 text-left bg-transparent border-none cursor-pointer">
+                  <svg class="w-4 h-4 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013 3v1"></path>
+                  </svg>
+                  Log out
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
 </header>
 
 <div class="mx-auto max-w-3xl mt-16 lg:flex lg:gap-x-16 lg:px-8">
