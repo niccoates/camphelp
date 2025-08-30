@@ -1,9 +1,9 @@
 # app/controllers/campsites_controller.rb
 class CampsitesController < ApplicationController
   before_action :require_authentication
-  before_action :set_campsite, only: [:show, :edit, :update, :settings, :settings_portal, :destroy]
+  before_action :set_campsite, only: [ :show, :edit, :update, :settings, :settings_portal, :destroy ]
   before_action :set_user_campsites, if: :show_navigation?
-  before_action :ensure_owner, only: [:edit, :update, :settings, :settings_portal, :destroy]
+  before_action :ensure_owner, only: [ :edit, :update, :settings, :settings_portal, :destroy ]
 
   def index
      @campsites = Current.user.campsites
@@ -18,7 +18,7 @@ class CampsitesController < ApplicationController
     if @campsite.save
       # Make the current user the owner
       @campsite.campsite_users.create!(user: Current.user, is_owner: true)
-      redirect_to campsite_path(@campsite.slug), notice: 'Campsite created successfully!'
+      redirect_to campsite_path(@campsite.slug), notice: "Campsite created successfully!"
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class CampsitesController < ApplicationController
 
   def update
     if @campsite.update(campsite_params)
-      redirect_to settings_campsite_path(@campsite.slug), notice: 'Campsite updated successfully!'
+      redirect_to settings_campsite_path(@campsite.slug), notice: "Campsite updated successfully!"
     else
       render :settings, status: :unprocessable_entity
     end

@@ -9,6 +9,6 @@ class CreateCampsiteUsers < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_index :campsite_users, [:campsite_id, :user_id], unique: true
+    add_index :campsite_users, [ :campsite_id, :user_id ], unique: true
   end
 end

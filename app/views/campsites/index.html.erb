@@ -18,7 +18,7 @@
           <div class="flex items-center space-x-3">
             <div class="flex-shrink-0">
               <% if campsite.logo.present? %>
-                <img class="h-10 w-10 rounded-full" src="<%= campsite.logo %>" alt="">
+                <%= image_tag campsite.logo, class: "h-10 w-10 rounded-full", alt: "#{campsite.name} logo" %>
               <% else %>
                 <div class="h-10 w-10 rounded-full flex items-center justify-center text-white font-medium" style="background-color: <%= campsite.primary_colour || '#3B82F6' %>">
                   <%= campsite.name.first.upcase %>
