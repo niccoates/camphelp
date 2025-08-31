@@ -18,4 +18,8 @@ Rails.application.routes.draw do
   resources :passwords, param: :token
   resource :sign_up
   get "up" => "rails/health#show", as: :rails_health_check
+
+  get 'billing', to: 'billing#show'
+  get 'billing/customer-portal', to: 'billing#customer_portal', as: 'customer_portal'
+  post 'webhooks/stripe', to: 'webhooks#stripe'
 end

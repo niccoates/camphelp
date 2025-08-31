@@ -25,6 +25,9 @@
   <body class="h-full">
     <% if show_navigation? %>
       <div class="min-h-full">
+        <% if show_navigation? && @campsite&.trial? %>
+        <%= trial_banner_for_campsite(@campsite) %>
+        <% end %>
         <header class="sticky top-0 z-50 border-b border-gray-200 bg-white dark:border-white/10 dark:bg-gray-900">
             <nav aria-label="Menu">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_30_082602) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_31_175313) do
   create_table "campsite_users", force: :cascade do |t|
     t.integer "campsite_id", null: false
     t.integer "user_id", null: false
@@ -35,6 +35,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_30_082602) do
     t.string "contact_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "stripe_subscription_id"
+    t.string "subscription_status"
+    t.datetime "trial_ends_at"
+    t.index ["stripe_subscription_id"], name: "index_campsites_on_stripe_subscription_id", unique: true
+    t.index ["subscription_status"], name: "index_campsites_on_subscription_status"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -53,7 +58,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_30_082602) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "phone"
+    t.string "stripe_customer_id"
+    t.boolean "has_used_trial", default: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
+    t.index ["stripe_customer_id"], name: "index_users_on_stripe_customer_id", unique: true
   end
 
   add_foreign_key "campsite_users", "campsites"
