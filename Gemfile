@@ -44,7 +44,7 @@ gem "thruster", require: false
 #
 
 # Stripe for billing
-gem 'stripe', '~> 10.0'
+gem 'stripe', '~> 15.5'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
